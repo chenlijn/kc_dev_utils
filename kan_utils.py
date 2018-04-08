@@ -54,7 +54,6 @@ class KanDataProc(object):
 
 
             
-        return
 
 kan_data_proc = KanDataProc()
 
