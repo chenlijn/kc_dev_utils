@@ -14,9 +14,9 @@ fpr, tpr, thresholds = roc_curve(y, scores, pos_label=2)
 #compute area under curve
 area = auc(fpr, tpr)
 
-# print fpr
-# print tpr
-# print thresholds
+print fpr
+print tpr
+print thresholds
 
 plt.figure()
 plt.plot(fpr, tpr, color='blue',
