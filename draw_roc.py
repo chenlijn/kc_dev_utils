@@ -20,12 +20,12 @@ print thresholds
 
 plt.figure()
 plt.plot(fpr, tpr, color='blue',
-                  label='ROC curve (area = %0.2f)' % area)
+                  label='ROC curve (area = %0.2f)' % area, linewidth=2)
 plt.plot([0, 1], [0, 1], color='navy',  linestyle='--')
 plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
+plt.xlabel('False Positive Rate', fontsize=10)
+plt.ylabel('True Positive Rate', fontsize=10)
 plt.title('Receiver operating characteristic curve')
 plt.legend(loc="lower right")
 plt.savefig("roc.png")
