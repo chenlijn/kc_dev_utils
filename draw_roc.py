@@ -3,7 +3,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, roc_auc_score
 
 y = np.array([1,1,2,2])
 scores = np.array([0.1, 0.4, 0.35, 0.8])
@@ -12,7 +12,8 @@ scores = np.array([0.1, 0.4, 0.35, 0.8])
 fpr, tpr, thresholds = roc_curve(y, scores, pos_label=2) 
 
 #compute area under curve
-area = auc(fpr, tpr)
+binary_y = ...
+area = roc_auc_score(binary_y, scores)
 
 print fpr
 print tpr
@@ -30,4 +31,5 @@ plt.title('Receiver operating characteristic curve')
 plt.legend(loc="lower right")
 plt.savefig("roc.png")
 #plt.show()
+
 

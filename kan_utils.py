@@ -12,6 +12,7 @@ import shutil
 import random
 import base64
 from hashlib import md5
+from parse_xml import *
 
 
 class KanDataProc(object):
@@ -50,9 +51,22 @@ class KanDataProc(object):
                                 tf.write(data)
         return
 
+    
+    def filter_mask_img(self, maskimg):
+        hist_val, bin_edges = np.histogram(maskimg, bins = range(256))
+        #print hist_val
+        mask_val = bin_edges[hist_val.argsort()[-2]] # the value with the second largest occurrence #
+                                                     # the most frequent value is zero.
+        #rows, cols = np.where(maskimg == mask_val) 
+        rows, cols = np.where(maskimg > 0) 
+        temp_mask = np.zeros_like(maskimg)
+        temp_mask[rows, cols] = np.uint8(1)
 
+        kernel = np.ones((3,3), np.uint8) 
+        erosion = cv2.erode(temp_mask,kernel,iterations = 1)
+        dilation = cv2.dilate(erosion, kernel, iterations = 1) 
 
-
+        return dilation
             
 
 kan_data_proc = KanDataProc()
